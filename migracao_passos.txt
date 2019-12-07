@@ -1,0 +1,26 @@
+Instalação do script de migração
+--------------------------------
+1. Designar um diretório do computador como um diretório no banco de dados Oracle
+   Por exemplo: designei o diretório local 'C:\oraclexe\script' como o diretório 'SCRIPT' com a instrução 'CREATE DIRECTORY'
+
+Execução do script de migração
+------------------------------
+2. Copiar para o diretório designado como 'SCRIPT' os arquivos "Object List Report" que serão convertidos em packages de banco.
+   Esses arquivos devem ser salvos no formato de texto UTF-8, o que pode ser feito no bloco de notas (Notepad) do próprio Windows.
+
+3. Executar a linha de comando abaixo no diretório designado como 'SCRIPT':
+   dir /b /ogn *.txt > object_list_reports
+   (para isso eu criei o arquivo 'object_list_reports.bat' no diretório 'C:\oraclexe\script', o que automatiza essa parte)
+   O motivo disso é que, para conversões em lote via Oracle SQL Developer, o arquivo-texto 'object_list_reports' é lido.
+   Ele contém os nomes dos arquivos "Object List Report" que o banco Oracle deve importar.
+
+4. Executar os scripts no Oracle SQL Developer nesta sequência:
+   @migracao_drop.sql -- Caso seja necessário remover tudo
+   @migracao_create.sql -- Para criar os objetos
+   @migracao_recreate.sql -- Para recriar os objetos (eliminar e criar novamente)
+
+5. O script migracao_data_batch.sql deve ser executado somente se houver arquivos Object List Report em lote para processar, isto é, se a interface em APEX não for utilizada.
+   @migracao_data_batch.sql
+   -- são três scripts: o primeiro importa o conteúdo do diretório 'SCRIPT' para o banco; o segundo processa os arquivos; o terceiro exporta o conteúdo processado
+
+   O processamento de cada arquivo pode demorar alguns minutos. O ideal é processar um por vez.

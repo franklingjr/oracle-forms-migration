@@ -1,0 +1,1362 @@
+ * Name                                              SCH0002
+ - Subclass Information                              
+ - Comments                                          
+ - Help Book Title                                   
+ * Title                                             School Members
+ * Console Window                                    W_SCHOOL_MEMBERS
+ - Menu Source                                       File
+ * Menu Module                                       DEFAULT&SMARTBAR
+ - Initial Menu                                      
+ - Defer Required Enforcement                        No
+ - Menu Role                                         
+ - Mouse Navigation Limit                            Form
+ * First Navigation Data Block                       T_SCHOOL_MEMBERS
+ - Current Record Visual Attribute Group             
+ - Validation Unit                                   Default
+ - Interaction Mode                                  Blocking
+ - Maximum Query Time                                0
+ - Maximum Records Fetched                           0
+ - Isolation Mode                                    Read Committed
+ * Coordinate System                                 
+   ----------
+   * Coordinate System                               Real
+   * Real Unit                                       Point
+   * Default Font Scaling                            Yes
+   * Character Cell Height                           14
+   * Character Cell Width                            7
+   ----------
+ - Use 3D Controls                                   Yes
+ - Form Horizontal Toolbar Canvas                    
+ - Form Vertical Toolbar Canvas                      
+ - Direction                                         Default
+ - Runtime Compatibility Mode                        5.0
+ * Triggers                                          
+   ----------
+   * Name                                            WHEN-NEW-FORM-INSTANCE
+   - Subclass Information                            
+   - Comments                                        
+   - Trigger Style                                   PL/SQL
+   * Trigger Text                                    
+
+BEGIN
+   set_window_property ('W_SCHOOL_MEMBERS', window_state, maximize);
+   go_block ('T_SCHOOL_MEMBERS');
+   execute_query;
+END;
+
+   - Fire in Enter-Query Mode                        Yes
+   - Execution Hierarchy                             Override
+   - Display in 'Keyboard Help'                      No
+   - 'Keyboard Help' Text                            
+   - Trigger Steps                                   
+   ----------
+ * Alerts                                            
+   ----------
+   * Name                                            MSG_ALERT
+   - Subclass Information                            
+   - Comments                                        
+   * Title                                           Attention:
+   - Message                                         
+   - Alert Style                                     Stop
+   - Button 1 Label                                  OK
+   * Button 2 Label                                  
+   - Button 3 Label                                  
+   - Default Alert Button                            Button 1
+   - Visual Attribute Group                          DEFAULT
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   - Foreground Color                                
+   - Background Color                                
+   - Fill Pattern                                    
+   - Font                                            
+   - Font Name                                       
+   - Font Size                                       0
+   - Font Weight                                     Medium
+   - Font Style                                      Plain
+   - Font Spacing                                    Normal
+   - Direction                                       Default
+   ----------
+   * Name                                            MSG_WARNING
+   - Subclass Information                            
+   - Comments                                        
+   * Title                                           Warning:
+   - Message                                         
+   * Alert Style                                     Caution
+   * Button 1 Label                                  Yes
+   * Button 2 Label                                  No
+   - Button 3 Label                                  
+   - Default Alert Button                            Button 1
+   - Visual Attribute Group                          DEFAULT
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   - Foreground Color                                
+   - Background Color                                
+   - Fill Pattern                                    
+   - Font                                            
+   - Font Name                                       
+   - Font Size                                       0
+   - Font Weight                                     Medium
+   - Font Style                                      Plain
+   - Font Spacing                                    Normal
+   - Direction                                       Default
+   ----------
+   * Name                                            MSG_NOTE
+   - Subclass Information                            
+   - Comments                                        
+   * Title                                           Note:
+   - Message                                         
+   * Alert Style                                     Note
+   - Button 1 Label                                  OK
+   * Button 2 Label                                  
+   - Button 3 Label                                  
+   - Default Alert Button                            Button 1
+   - Visual Attribute Group                          DEFAULT
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   - Foreground Color                                
+   - Background Color                                
+   - Fill Pattern                                    
+   - Font                                            
+   - Font Name                                       
+   - Font Size                                       0
+   - Font Weight                                     Medium
+   - Font Style                                      Plain
+   - Font Spacing                                    Normal
+   - Direction                                       Default
+   ----------
+ - Attached PL/SQL Libraries                         
+ * Blocks                                            
+   ----------
+   * Name                                            T_SCHOOL_MEMBERS
+   - Subclass Information                            
+   - Comments                                        
+   - Navigation Style                                Same Record
+   - Previous Navigation Data Block                  
+   - Next Navigation Data Block                      
+   - Current Record Visual Attribute Group           
+   - Query Array Size                                0
+   - Number of Records Buffered                      0
+   * Number of Records Displayed                     10
+   - Query All Records                               No
+   - Record Orientation                              Vertical
+   - Single Record                                   No
+   - Database Data Block                             Yes
+   - Enforce Primary Key                             No
+   - Query Allowed                                   Yes
+   - Query Data Source Type                          Table
+   * Query Data Source Name                          T_SCHOOL_MEMBERS
+   * Query Data Source Columns                       
+     ----------
+     * Column Name                                   SCH_ME_ID
+     * Column Type                                   NUMBER
+     - Column Type Name                              
+     - Parent Column                                 
+     * Length                                        0
+     * Precision                                     38
+     * Scale                                         0
+     * Mandatory                                     Yes
+     ----------
+     * Column Name                                   SCH_ME_NAME
+     * Column Type                                   VARCHAR2
+     - Column Type Name                              
+     - Parent Column                                 
+     * Length                                        100
+     * Precision                                     0
+     * Scale                                         0
+     * Mandatory                                     No
+     ----------
+     * Column Name                                   SCH_ME_SC_ID
+     * Column Type                                   NUMBER
+     - Column Type Name                              
+     - Parent Column                                 
+     * Length                                        0
+     * Precision                                     38
+     * Scale                                         0
+     * Mandatory                                     Yes
+     ----------
+     * Column Name                                   SCH_ME_MT_ID
+     * Column Type                                   NUMBER
+     - Column Type Name                              
+     - Parent Column                                 
+     * Length                                        0
+     * Precision                                     38
+     * Scale                                         0
+     * Mandatory                                     Yes
+     ----------
+   - Query Data Source Arguments                     
+   - Alias                                           
+   - Include REF Item                                No
+   - WHERE Clause                                    
+   - ORDER BY Clause                                 
+   - Optimizer Hint                                  
+   - Insert Allowed                                  Yes
+   - Update Allowed                                  Yes
+   - Locking Mode                                    Automatic
+   - Delete Allowed                                  Yes
+   - Key Mode                                        Automatic
+   - Update Changed Columns Only                     No
+   - Enforce Column Security                         No
+   - Maximum Query Time                              0
+   - Maximum Records Fetched                         0
+   - DML Data Target Type                            Table
+   - DML Data Target Name                            
+   - Insert Procedure Name                           
+   - Insert Procedure Result Set Columns             
+   - Insert Procedure Arguments                      
+   - Update Procedure Name                           
+   - Update Procedure Result Set Columns             
+   - Update Procedure Arguments                      
+   - Delete Procedure Name                           
+   - Delete Procedure Result Set Columns             
+   - Delete Procedure Arguments                      
+   - Lock Procedure Name                             
+   - Lock Procedure Result Set Columns               
+   - Lock Procedure Arguments                        
+   - DML Array Size                                  1
+   - Precompute Summaries                            No
+   - DML Returning Value                             No
+   * Show Scroll Bar                                 Yes
+   * Scroll Bar Canvas                               C_SCHOOL_MEMBERS
+   * Scroll Bar Tab Page                             
+   - Scroll Bar Orientation                          Vertical
+   * Scroll Bar X Position                           511
+   * Scroll Bar Y Position                           39
+   * Scroll Bar Width                                14
+   * Scroll Bar Length                               150
+   - Scroll Bar Height                               0
+   - Reverse Direction                               No
+   - Visual Attribute Group                          DEFAULT
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   - Foreground Color                                
+   - Background Color                                
+   - Fill Pattern                                    
+   - Listed In Data Block Menu                       Yes
+   - Data Block Description                          
+   - Direction                                       Default
+   * Triggers                                        
+     ----------
+     * Name                                          POST-QUERY
+     - Subclass Information                          
+     - Comments                                      
+     - Trigger Style                                 PL/SQL
+     * Trigger Text                                  
+
+BEGIN
+   select ts.sch_name
+     into :T_SCHOOL_MEMBERS.sch_name
+     from t_school ts
+    where ts.sch_id = :T_SCHOOL_MEMBERS.sch_me_sc_id;
+
+EXCEPTION
+   when no_data_found then
+      :T_SCHOOL_MEMBERS.sch_name := NULL;
+   when others then
+      :T_SCHOOL_MEMBERS.sch_name := sqlerrm;
+END;
+
+BEGIN
+   select tsmt.sch_mt_name
+     into :T_SCHOOL_MEMBERS.sch_mt_name
+     from t_school_member_types tsmt
+    where tsmt.sch_mt_id = :T_SCHOOL_MEMBERS.sch_me_mt_id;
+
+EXCEPTION
+   when no_data_found then
+      :T_SCHOOL_MEMBERS.sch_mt_name := NULL;
+   when others then
+      :T_SCHOOL_MEMBERS.sch_mt_name := sqlerrm;
+END;
+
+     - Fire in Enter-Query Mode                      Yes
+     - Execution Hierarchy                           Override
+     - Display in 'Keyboard Help'                    No
+     - 'Keyboard Help' Text                          
+     - Trigger Steps                                 
+     ----------
+     * Name                                          PRE-INSERT
+     - Subclass Information                          
+     - Comments                                      
+     - Trigger Style                                 PL/SQL
+     * Trigger Text                                  
+
+select s_t_school_members.nextval into :SCH_ME_ID from dual;
+     - Fire in Enter-Query Mode                      Yes
+     - Execution Hierarchy                           Override
+     - Display in 'Keyboard Help'                    No
+     - 'Keyboard Help' Text                          
+     - Trigger Steps                                 
+     ----------
+     * Name                                          WHEN-VALIDATE-RECORD
+     - Subclass Information                          
+     - Comments                                      
+     - Trigger Style                                 PL/SQL
+     * Trigger Text                                  
+
+BEGIN
+   :T_SCHOOL_MEMBERS.sch_me_name := ltrim (rtrim (:T_SCHOOL_MEMBERS.sch_me_name));
+
+   if :T_SCHOOL_MEMBERS.sch_me_name is NULL then
+      msg_alert ('Member name must be informed.');
+   end if;
+
+   if :T_SCHOOL_MEMBERS.sch_me_sc_id is NULL then
+      msg_alert ('School must be informed.');
+   end if;
+
+   if :T_SCHOOL_MEMBERS.sch_me_mt_id is NULL then
+      msg_alert ('Membership type must be informed.');
+   end if;
+END;
+
+     - Fire in Enter-Query Mode                      Yes
+     - Execution Hierarchy                           Override
+     - Display in 'Keyboard Help'                    No
+     - 'Keyboard Help' Text                          
+     - Trigger Steps                                 
+     ----------
+   * Items                                           
+     ----------
+     * Name                                          SCH_ME_ID
+     * Item Type                                     Display Item
+     - Subclass Information                          
+     - Comments                                      
+     - Help Book Topic                               
+     * Justification                                 End
+     - Popup Menu                                    
+     - Previous Navigation Item                      
+     - Next Navigation Item                          
+     * Data Type                                     Number
+     * Maximum Length                                39
+     - Initial Value                                 
+     - Format Mask                                   
+     - Copy Value from Item                          
+     - Synchronize with Item                         
+     - Calculation Mode                              None
+     - Formula                                       
+     - Summary Function                              None
+     - Summarized Block                              
+     - Summarized Item                               
+     * Current Record Visual Attribute Group         CURRENT_RECORD
+     - Distance Between Records                      0
+     * Number of Items Displayed                     0
+     - Database Item                                 Yes
+     * Column Name                                   SCH_ME_ID
+     - Primary Key                                   No
+     - Query Only                                    No
+     - Visible                                       Yes
+     * Canvas                                        C_SCHOOL_MEMBERS
+     * Tab Page                                      
+     * X Position                                    14
+     * Y Position                                    39
+     * Width                                         20
+     * Height                                        15
+     - Bevel                                         Lowered
+     - Rendered                                      Yes
+     - Visual Attribute Group                        DEFAULT
+     - Prompt Visual Attribute Group                 DEFAULT
+     - Character Mode Logical Attribute              
+     - White on Black                                No
+     - Foreground Color                              
+     - Background Color                              
+     - Fill Pattern                                  
+     - Font                                          
+     * Font Name                                     Arial
+     * Font Size                                     8
+     * Font Weight                                   Demilight
+     * Font Style                                    Plain
+     * Font Spacing                                  Normal
+     * Prompt                                        ID
+     * Prompt Display Style                          First Record
+     - Prompt Justification                          Start
+     * Prompt Attachment Edge                        Top
+     * Prompt Alignment                              Center
+     - Prompt Attachment Offset                      0
+     - Prompt Alignment Offset                       0
+     - Prompt Reading Order                          Default
+     - Prompt Foreground Color                       
+     - Prompt Font                                   
+     * Prompt Font Name                              Arial
+     * Prompt Font Size                              8
+     * Prompt Font Weight                            Demilight
+     * Prompt Font Style                             Plain
+     * Prompt Font Spacing                           Normal
+     - Tooltip                                       
+     - Tooltip Visual Attribute Group                
+     - Initial Keyboard State                        Default
+     - Reading Order                                 Default
+     - Keyboard State                                Any
+     - Triggers                                      
+     ----------
+     * Name                                          SCH_ME_NAME
+     * Item Type                                     Text Item
+     - Subclass Information                          
+     - Comments                                      
+     - Help Book Topic                               
+     - Enabled                                       Yes
+     - Justification                                 Start
+     - Implementation Class                          
+     - Multi-Line                                    No
+     - Wrap Style                                    Word
+     - Case Restriction                              Mixed
+     - Conceal Data                                  No
+     - Keep Cursor Position                          No
+     - Automatic Skip                                No
+     - Popup Menu                                    
+     - Keyboard Navigable                            Yes
+     - Previous Navigation Item                      
+     - Next Navigation Item                          
+     - Data Type                                     Char
+     * Maximum Length                                100
+     - Fixed Length                                  No
+     - Initial Value                                 
+     * Required                                      No
+     - Format Mask                                   
+     - Lowest Allowed Value                          
+     - Highest Allowed Value                         
+     - Copy Value from Item                          
+     - Synchronize with Item                         
+     - Calculation Mode                              None
+     - Formula                                       
+     - Summary Function                              None
+     - Summarized Block                              
+     - Summarized Item                               
+     * Current Record Visual Attribute Group         CURRENT_RECORD
+     - Distance Between Records                      0
+     * Number of Items Displayed                     0
+     - Database Item                                 Yes
+     * Column Name                                   SCH_ME_NAME
+     - Primary Key                                   No
+     - Query Only                                    No
+     - Query Allowed                                 Yes
+     - Query Length                                  0
+     - Case Insensitive Query                        No
+     - Insert Allowed                                Yes
+     - Update Allowed                                Yes
+     - Update Only if NULL                           No
+     - Lock Record                                   No
+     - List of Values                                
+     - List X Position                               0
+     - List Y Position                               0
+     - Validate from List                            No
+     - Editor                                        
+     - Editor X Position                             0
+     - Editor Y Position                             0
+     - Visible                                       Yes
+     * Canvas                                        C_SCHOOL_MEMBERS
+     * Tab Page                                      
+     * X Position                                    34
+     * Y Position                                    39
+     * Width                                         141
+     * Height                                        15
+     - Bevel                                         Lowered
+     - Rendered                                      Yes
+     - Show Vertical Scroll Bar                      No
+     - Visual Attribute Group                        DEFAULT
+     - Prompt Visual Attribute Group                 DEFAULT
+     - Character Mode Logical Attribute              
+     - White on Black                                No
+     - Foreground Color                              
+     - Background Color                              
+     - Fill Pattern                                  
+     - Font                                          
+     * Font Name                                     Arial
+     * Font Size                                     8
+     * Font Weight                                   Demilight
+     * Font Style                                    Plain
+     * Font Spacing                                  Normal
+     * Prompt                                        Name
+     * Prompt Display Style                          First Record
+     - Prompt Justification                          Start
+     * Prompt Attachment Edge                        Top
+     * Prompt Alignment                              Center
+     - Prompt Attachment Offset                      0
+     - Prompt Alignment Offset                       0
+     - Prompt Reading Order                          Default
+     - Prompt Foreground Color                       
+     - Prompt Font                                   
+     * Prompt Font Name                              Arial
+     * Prompt Font Size                              8
+     * Prompt Font Weight                            Demilight
+     * Prompt Font Style                             Plain
+     * Prompt Font Spacing                           Normal
+     - Hint                                          
+     - Display Hint Automatically                    No
+     - Tooltip                                       
+     - Tooltip Visual Attribute Group                
+     - Initial Keyboard State                        Default
+     - Reading Order                                 Default
+     - Keyboard State                                Any
+     - Triggers                                      
+     ----------
+     * Name                                          SCH_ME_SC_ID
+     * Item Type                                     Text Item
+     - Subclass Information                          
+     - Comments                                      
+     - Help Book Topic                               
+     - Enabled                                       Yes
+     * Justification                                 End
+     - Implementation Class                          
+     - Multi-Line                                    No
+     - Wrap Style                                    Word
+     - Case Restriction                              Mixed
+     - Conceal Data                                  No
+     - Keep Cursor Position                          No
+     - Automatic Skip                                No
+     - Popup Menu                                    
+     - Keyboard Navigable                            Yes
+     - Previous Navigation Item                      
+     - Next Navigation Item                          
+     * Data Type                                     Number
+     * Maximum Length                                39
+     - Fixed Length                                  No
+     - Initial Value                                 
+     * Required                                      No
+     - Format Mask                                   
+     - Lowest Allowed Value                          
+     - Highest Allowed Value                         
+     - Copy Value from Item                          
+     - Synchronize with Item                         
+     - Calculation Mode                              None
+     - Formula                                       
+     - Summary Function                              None
+     - Summarized Block                              
+     - Summarized Item                               
+     * Current Record Visual Attribute Group         CURRENT_RECORD
+     - Distance Between Records                      0
+     * Number of Items Displayed                     0
+     - Database Item                                 Yes
+     * Column Name                                   SCH_ME_SC_ID
+     - Primary Key                                   No
+     - Query Only                                    No
+     - Query Allowed                                 Yes
+     - Query Length                                  0
+     - Case Insensitive Query                        No
+     - Insert Allowed                                Yes
+     - Update Allowed                                Yes
+     - Update Only if NULL                           No
+     - Lock Record                                   No
+     * List of Values                                LV_SCHOOLS
+     - List X Position                               0
+     - List Y Position                               0
+     * Validate from List                            Yes
+     - Editor                                        
+     - Editor X Position                             0
+     - Editor Y Position                             0
+     - Visible                                       Yes
+     * Canvas                                        C_SCHOOL_MEMBERS
+     * Tab Page                                      
+     * X Position                                    177
+     * Y Position                                    39
+     * Width                                         20
+     * Height                                        15
+     - Bevel                                         Lowered
+     - Rendered                                      Yes
+     - Show Vertical Scroll Bar                      No
+     - Visual Attribute Group                        DEFAULT
+     - Prompt Visual Attribute Group                 DEFAULT
+     - Character Mode Logical Attribute              
+     - White on Black                                No
+     - Foreground Color                              
+     - Background Color                              
+     - Fill Pattern                                  
+     - Font                                          
+     * Font Name                                     Arial
+     * Font Size                                     8
+     * Font Weight                                   Demilight
+     * Font Style                                    Plain
+     * Font Spacing                                  Normal
+     * Prompt                                        School
+     * Prompt Display Style                          First Record
+     - Prompt Justification                          Start
+     * Prompt Attachment Edge                        Top
+     * Prompt Alignment                              Start
+     - Prompt Attachment Offset                      0
+     - Prompt Alignment Offset                       0
+     - Prompt Reading Order                          Default
+     - Prompt Foreground Color                       
+     - Prompt Font                                   
+     * Prompt Font Name                              Arial
+     * Prompt Font Size                              8
+     * Prompt Font Weight                            Demilight
+     * Prompt Font Style                             Plain
+     * Prompt Font Spacing                           Normal
+     - Hint                                          
+     - Display Hint Automatically                    No
+     - Tooltip                                       
+     - Tooltip Visual Attribute Group                
+     - Initial Keyboard State                        Default
+     - Reading Order                                 Default
+     - Keyboard State                                Any
+     * Triggers                                      
+       ----------
+       * Name                                        WHEN-VALIDATE-ITEM
+       - Subclass Information                        
+       - Comments                                    
+       - Trigger Style                               PL/SQL
+       * Trigger Text                                
+
+BEGIN
+   select ts.sch_name
+     into :T_SCHOOL_MEMBERS.sch_name
+     from t_school ts
+    where ts.sch_id = :T_SCHOOL_MEMBERS.sch_me_sc_id;
+
+EXCEPTION
+   when no_data_found then
+      :T_SCHOOL_MEMBERS.sch_name := NULL;
+   when others then
+      :T_SCHOOL_MEMBERS.sch_name := sqlerrm;
+END;
+
+       - Fire in Enter-Query Mode                    Yes
+       - Execution Hierarchy                         Override
+       - Display in 'Keyboard Help'                  No
+       - 'Keyboard Help' Text                        
+       - Trigger Steps                               
+       ----------
+     ----------
+     * Name                                          BT_LOV_SCH_ID
+     * Item Type                                     Push Button
+     - Subclass Information                          
+     - Comments                                      
+     - Help Book Topic                               
+     - Enabled                                       Yes
+     * Label                                         ...
+     - Access Key                                    
+     - Implementation Class                          
+     - Iconic                                        No
+     - Icon Filename                                 
+     - Default Button                                No
+     - Popup Menu                                    
+     - Keyboard Navigable                            Yes
+     - Mouse Navigate                                Yes
+     - Previous Navigation Item                      
+     - Next Navigation Item                          
+     * Current Record Visual Attribute Group         CURRENT_RECORD
+     - Distance Between Records                      0
+     - Number of Items Displayed                     0
+     - Visible                                       Yes
+     * Canvas                                        C_SCHOOL_MEMBERS
+     * Tab Page                                      
+     * X Position                                    199
+     * Y Position                                    39
+     * Width                                         15
+     * Height                                        15
+     - Visual Attribute Group                        DEFAULT
+     - Prompt Visual Attribute Group                 DEFAULT
+     - Character Mode Logical Attribute              
+     - White on Black                                No
+     - Foreground Color                              
+     - Background Color                              
+     - Fill Pattern                                  
+     - Font                                          
+     * Font Name                                     Arial
+     * Font Size                                     8
+     * Font Weight                                   Demilight
+     * Font Style                                    Plain
+     * Font Spacing                                  Normal
+     - Prompt                                        
+     - Prompt Display Style                          First Record
+     - Prompt Justification                          Start
+     - Prompt Attachment Edge                        Start
+     - Prompt Alignment                              Start
+     - Prompt Attachment Offset                      0
+     - Prompt Alignment Offset                       0
+     - Prompt Reading Order                          Default
+     - Prompt Foreground Color                       
+     - Prompt Font                                   
+     - Prompt Font Name                              
+     - Prompt Font Size                              0
+     - Prompt Font Weight                            Medium
+     - Prompt Font Style                             Plain
+     - Prompt Font Spacing                           Normal
+     - Hint                                          
+     - Display Hint Automatically                    No
+     - Tooltip                                       
+     - Tooltip Visual Attribute Group                
+     - Direction                                     Default
+     * Triggers                                      
+       ----------
+       * Name                                        WHEN-BUTTON-PRESSED
+       - Subclass Information                        
+       - Comments                                    
+       - Trigger Style                               PL/SQL
+       * Trigger Text                                
+
+BEGIN
+   go_item ('T_SCHOOL_MEMBERS.sch_me_sc_id');
+   list_values;
+END;
+
+       - Fire in Enter-Query Mode                    Yes
+       - Execution Hierarchy                         Override
+       - Display in 'Keyboard Help'                  No
+       - 'Keyboard Help' Text                        
+       - Trigger Steps                               
+       ----------
+     ----------
+     * Name                                          SCH_NAME
+     * Item Type                                     Display Item
+     - Subclass Information                          
+     - Comments                                      
+     - Help Book Topic                               
+     - Justification                                 Start
+     - Popup Menu                                    
+     - Previous Navigation Item                      
+     - Next Navigation Item                          
+     - Data Type                                     Char
+     * Maximum Length                                300
+     - Initial Value                                 
+     - Format Mask                                   
+     - Copy Value from Item                          
+     - Synchronize with Item                         
+     - Calculation Mode                              None
+     - Formula                                       
+     - Summary Function                              None
+     - Summarized Block                              
+     - Summarized Item                               
+     * Current Record Visual Attribute Group         CURRENT_RECORD
+     - Distance Between Records                      0
+     - Number of Items Displayed                     0
+     * Database Item                                 No
+     - Column Name                                   
+     - Primary Key                                   No
+     - Query Only                                    No
+     - Visible                                       Yes
+     * Canvas                                        C_SCHOOL_MEMBERS
+     * Tab Page                                      
+     * X Position                                    216
+     * Y Position                                    39
+     * Width                                         125
+     * Height                                        15
+     - Bevel                                         Lowered
+     - Rendered                                      Yes
+     - Visual Attribute Group                        DEFAULT
+     - Prompt Visual Attribute Group                 DEFAULT
+     - Character Mode Logical Attribute              
+     - White on Black                                No
+     - Foreground Color                              
+     - Background Color                              
+     - Fill Pattern                                  
+     - Font                                          
+     * Font Name                                     Arial
+     * Font Size                                     8
+     * Font Weight                                   Demilight
+     * Font Style                                    Plain
+     * Font Spacing                                  Normal
+     - Prompt                                        
+     - Prompt Display Style                          First Record
+     - Prompt Justification                          Start
+     - Prompt Attachment Edge                        Start
+     - Prompt Alignment                              Start
+     - Prompt Attachment Offset                      0
+     - Prompt Alignment Offset                       0
+     - Prompt Reading Order                          Default
+     - Prompt Foreground Color                       
+     - Prompt Font                                   
+     - Prompt Font Name                              
+     - Prompt Font Size                              0
+     - Prompt Font Weight                            Medium
+     - Prompt Font Style                             Plain
+     - Prompt Font Spacing                           Normal
+     - Tooltip                                       
+     - Tooltip Visual Attribute Group                
+     - Initial Keyboard State                        Default
+     - Reading Order                                 Default
+     - Keyboard State                                Any
+     - Triggers                                      
+     ----------
+     * Name                                          SCH_ME_MT_ID
+     * Item Type                                     Text Item
+     - Subclass Information                          
+     - Comments                                      
+     - Help Book Topic                               
+     - Enabled                                       Yes
+     * Justification                                 End
+     - Implementation Class                          
+     - Multi-Line                                    No
+     - Wrap Style                                    Word
+     - Case Restriction                              Mixed
+     - Conceal Data                                  No
+     - Keep Cursor Position                          No
+     - Automatic Skip                                No
+     - Popup Menu                                    
+     - Keyboard Navigable                            Yes
+     - Previous Navigation Item                      
+     - Next Navigation Item                          
+     * Data Type                                     Number
+     * Maximum Length                                39
+     - Fixed Length                                  No
+     - Initial Value                                 
+     * Required                                      No
+     - Format Mask                                   
+     - Lowest Allowed Value                          
+     - Highest Allowed Value                         
+     - Copy Value from Item                          
+     - Synchronize with Item                         
+     - Calculation Mode                              None
+     - Formula                                       
+     - Summary Function                              None
+     - Summarized Block                              
+     - Summarized Item                               
+     * Current Record Visual Attribute Group         CURRENT_RECORD
+     - Distance Between Records                      0
+     * Number of Items Displayed                     0
+     - Database Item                                 Yes
+     * Column Name                                   SCH_ME_MT_ID
+     - Primary Key                                   No
+     - Query Only                                    No
+     - Query Allowed                                 Yes
+     - Query Length                                  0
+     - Case Insensitive Query                        No
+     - Insert Allowed                                Yes
+     - Update Allowed                                Yes
+     - Update Only if NULL                           No
+     - Lock Record                                   No
+     * List of Values                                LV_SCHOOL_MEMBER_TYPES
+     - List X Position                               0
+     - List Y Position                               0
+     * Validate from List                            Yes
+     - Editor                                        
+     - Editor X Position                             0
+     - Editor Y Position                             0
+     - Visible                                       Yes
+     * Canvas                                        C_SCHOOL_MEMBERS
+     * Tab Page                                      
+     * X Position                                    343
+     * Y Position                                    39
+     * Width                                         20
+     * Height                                        15
+     - Bevel                                         Lowered
+     - Rendered                                      Yes
+     - Show Vertical Scroll Bar                      No
+     - Visual Attribute Group                        DEFAULT
+     - Prompt Visual Attribute Group                 DEFAULT
+     - Character Mode Logical Attribute              
+     - White on Black                                No
+     - Foreground Color                              
+     - Background Color                              
+     - Fill Pattern                                  
+     - Font                                          
+     * Font Name                                     Arial
+     * Font Size                                     8
+     * Font Weight                                   Demilight
+     * Font Style                                    Plain
+     * Font Spacing                                  Normal
+     * Prompt                                        Membership Type
+     * Prompt Display Style                          First Record
+     - Prompt Justification                          Start
+     * Prompt Attachment Edge                        Top
+     * Prompt Alignment                              Start
+     - Prompt Attachment Offset                      0
+     - Prompt Alignment Offset                       0
+     - Prompt Reading Order                          Default
+     - Prompt Foreground Color                       
+     - Prompt Font                                   
+     * Prompt Font Name                              Arial
+     * Prompt Font Size                              8
+     * Prompt Font Weight                            Demilight
+     * Prompt Font Style                             Plain
+     * Prompt Font Spacing                           Normal
+     - Hint                                          
+     - Display Hint Automatically                    No
+     - Tooltip                                       
+     - Tooltip Visual Attribute Group                
+     - Initial Keyboard State                        Default
+     - Reading Order                                 Default
+     - Keyboard State                                Any
+     * Triggers                                      
+       ----------
+       * Name                                        WHEN-VALIDATE-ITEM
+       - Subclass Information                        
+       - Comments                                    
+       - Trigger Style                               PL/SQL
+       * Trigger Text                                
+
+BEGIN
+   select tsmt.sch_mt_name
+     into :T_SCHOOL_MEMBERS.sch_mt_name
+     from t_school_member_types tsmt
+    where tsmt.sch_mt_id = :T_SCHOOL_MEMBERS.sch_me_mt_id;
+
+EXCEPTION
+   when no_data_found then
+      :T_SCHOOL_MEMBERS.sch_mt_name := NULL;
+   when others then
+      :T_SCHOOL_MEMBERS.sch_mt_name := sqlerrm;
+END;
+
+       - Fire in Enter-Query Mode                    Yes
+       - Execution Hierarchy                         Override
+       - Display in 'Keyboard Help'                  No
+       - 'Keyboard Help' Text                        
+       - Trigger Steps                               
+       ----------
+     ----------
+     * Name                                          BT_LOV_SCH_MT_ID
+     * Item Type                                     Push Button
+     - Subclass Information                          
+     - Comments                                      
+     - Help Book Topic                               
+     - Enabled                                       Yes
+     * Label                                         ...
+     - Access Key                                    
+     - Implementation Class                          
+     - Iconic                                        No
+     - Icon Filename                                 
+     - Default Button                                No
+     - Popup Menu                                    
+     - Keyboard Navigable                            Yes
+     - Mouse Navigate                                Yes
+     - Previous Navigation Item                      
+     - Next Navigation Item                          
+     * Current Record Visual Attribute Group         CURRENT_RECORD
+     - Distance Between Records                      0
+     - Number of Items Displayed                     0
+     - Visible                                       Yes
+     * Canvas                                        C_SCHOOL_MEMBERS
+     * Tab Page                                      
+     * X Position                                    366
+     * Y Position                                    39
+     * Width                                         15
+     * Height                                        15
+     - Visual Attribute Group                        DEFAULT
+     - Prompt Visual Attribute Group                 DEFAULT
+     - Character Mode Logical Attribute              
+     - White on Black                                No
+     - Foreground Color                              
+     - Background Color                              
+     - Fill Pattern                                  
+     - Font                                          
+     * Font Name                                     Arial
+     * Font Size                                     8
+     * Font Weight                                   Demilight
+     * Font Style                                    Plain
+     * Font Spacing                                  Normal
+     - Prompt                                        
+     - Prompt Display Style                          First Record
+     - Prompt Justification                          Start
+     - Prompt Attachment Edge                        Start
+     - Prompt Alignment                              Start
+     - Prompt Attachment Offset                      0
+     - Prompt Alignment Offset                       0
+     - Prompt Reading Order                          Default
+     - Prompt Foreground Color                       
+     - Prompt Font                                   
+     - Prompt Font Name                              
+     - Prompt Font Size                              0
+     - Prompt Font Weight                            Medium
+     - Prompt Font Style                             Plain
+     - Prompt Font Spacing                           Normal
+     - Hint                                          
+     - Display Hint Automatically                    No
+     - Tooltip                                       
+     - Tooltip Visual Attribute Group                
+     - Direction                                     Default
+     * Triggers                                      
+       ----------
+       * Name                                        WHEN-BUTTON-PRESSED
+       - Subclass Information                        
+       - Comments                                    
+       - Trigger Style                               PL/SQL
+       * Trigger Text                                
+
+previous_item;
+do_key ('list_values');
+
+       - Fire in Enter-Query Mode                    Yes
+       - Execution Hierarchy                         Override
+       - Display in 'Keyboard Help'                  No
+       - 'Keyboard Help' Text                        
+       - Trigger Steps                               
+       ----------
+     ----------
+     * Name                                          SCH_MT_NAME
+     * Item Type                                     Display Item
+     - Subclass Information                          
+     - Comments                                      
+     - Help Book Topic                               
+     - Justification                                 Start
+     - Popup Menu                                    
+     - Previous Navigation Item                      
+     - Next Navigation Item                          
+     - Data Type                                     Char
+     * Maximum Length                                300
+     - Initial Value                                 
+     - Format Mask                                   
+     - Copy Value from Item                          
+     - Synchronize with Item                         
+     - Calculation Mode                              None
+     - Formula                                       
+     - Summary Function                              None
+     - Summarized Block                              
+     - Summarized Item                               
+     * Current Record Visual Attribute Group         CURRENT_RECORD
+     - Distance Between Records                      0
+     - Number of Items Displayed                     0
+     * Database Item                                 No
+     - Column Name                                   
+     - Primary Key                                   No
+     - Query Only                                    No
+     - Visible                                       Yes
+     * Canvas                                        C_SCHOOL_MEMBERS
+     * Tab Page                                      
+     * X Position                                    384
+     * Y Position                                    39
+     * Width                                         125
+     * Height                                        15
+     - Bevel                                         Lowered
+     - Rendered                                      Yes
+     - Visual Attribute Group                        DEFAULT
+     - Prompt Visual Attribute Group                 DEFAULT
+     - Character Mode Logical Attribute              
+     - White on Black                                No
+     - Foreground Color                              
+     - Background Color                              
+     - Fill Pattern                                  
+     - Font                                          
+     * Font Name                                     Arial
+     * Font Size                                     8
+     * Font Weight                                   Demilight
+     * Font Style                                    Plain
+     * Font Spacing                                  Normal
+     - Prompt                                        
+     - Prompt Display Style                          First Record
+     - Prompt Justification                          Start
+     - Prompt Attachment Edge                        Start
+     - Prompt Alignment                              Start
+     - Prompt Attachment Offset                      0
+     - Prompt Alignment Offset                       0
+     - Prompt Reading Order                          Default
+     - Prompt Foreground Color                       
+     - Prompt Font                                   
+     - Prompt Font Name                              
+     - Prompt Font Size                              0
+     - Prompt Font Weight                            Medium
+     - Prompt Font Style                             Plain
+     - Prompt Font Spacing                           Normal
+     - Tooltip                                       
+     - Tooltip Visual Attribute Group                
+     - Initial Keyboard State                        Default
+     - Reading Order                                 Default
+     - Keyboard State                                Any
+     - Triggers                                      
+     ----------
+   - Relations                                       
+   ----------
+ * Canvases                                          
+   ----------
+   * Name                                            C_SCHOOL_MEMBERS
+   * Canvas Type                                     Content
+   - Subclass Information                            
+   - Comments                                        
+   - Help Book Topic                                 
+   - Raise on Entry                                  No
+   - Popup Menu                                      
+   - Visible                                         Yes
+   * Window                                          W_SCHOOL_MEMBERS
+   - Viewport X Position on Canvas                   0
+   - Viewport Y Position on Canvas                   0
+   * Width                                           540
+   * Height                                          324
+   - Bevel                                           Lowered
+   - Visual Attribute Group                          DEFAULT
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   - Foreground Color                                
+   - Background Color                                
+   - Fill Pattern                                    
+   - Direction                                       Default
+   * Graphics Objects                                
+     ----------
+     * Name                                          F_SCHOOL_MEMBERS
+     * Graphics Type                                 Frame
+     - Subclass Information                          
+     * Layout Data Block                             T_SCHOOL_MEMBERS
+     * Update Layout                                 Manually
+     * Layout Style                                  Tabular
+     - Frame Alignment                               Column
+     - Single Object Alignment                       Start
+     * Horizontal Margin                             7
+     * Vertical Margin                               14
+     * Horizontal Object Offset                      0
+     - Vertical Object Offset                        0
+     - Allow Expansion                               Yes
+     - Shrinkwrap                                    No
+     - Vertical Fill                                 Yes
+     - Maximum Objects per Line                      0
+     - Start Prompt Alignment                        Start
+     * Start Prompt Offset                           7
+     - Top Prompt Alignment                          Center
+     - Top Prompt Offset                             0
+     - Allow Multi-line Prompts                      Yes
+     - Allow Top-Attached Prompts                    No
+     - Allow Start-Attached Prompts                  No
+     * Number of Records Displayed                   10
+     - Distance Between Records                      0
+     * Show Scroll Bar                               Yes
+     - Scroll Bar Alignment                          End
+     * Scroll Bar Width                              14
+     * X Position                                    7
+     * Y Position                                    15
+     * Width                                         526
+     * Height                                        188
+     - Line Width                                    0
+     - Dash Style                                    Solid
+     - Cap Style                                     Butt
+     - Join Style                                    Mitre
+     * Bevel                                         Inset
+     - Visual Attribute Group                        DEFAULT
+     - Frame Title Visual Attribute Group            DEFAULT
+     - Foreground Color                              
+     - Background Color                              
+     * Fill Pattern                                  none
+     - Edge Foreground Color                         
+     * Edge Background Color                         white
+     * Edge Pattern                                  solid
+     * Frame Title                                   School Members
+     * Frame Title Alignment                         Start
+     * Frame Title Offset                            14
+     * Frame Title Spacing                           7
+     - Frame Title Reading Order                     Default
+     * Frame Title Foreground Color                  black
+     - Title Font                                    
+     * Frame Title Font Name                         Arial
+     * Frame Title Font Size                         8
+     * Frame Title Font Weight                       Demilight
+     * Frame Title Font Style                        Plain
+     * Frame Title Font Spacing                      Normal
+     ----------
+   ----------
+ - Editors                                           
+ - Form Parameters                                   
+ * Lists of Values                                   
+   ----------
+   * Name                                            LV_SCHOOL_MEMBER_TYPES
+   - Subclass Information                            
+   - Comments                                        
+   * Title                                           Membership Types
+   - List Type                                       Record Group
+   * Record Group                                    RG_SCHOOL_MEMBER_TYPES
+   * Column Mapping Properties                       
+     ----------
+     * Name                                          SCH_MT_NAME
+     * Title                                         Membership Name
+     * Return Item                                   T_SCHOOL_MEMBERS.SCH_MT_NAME
+     * Display Width                                 200
+     ----------
+     * Name                                          SCH_MT_ID
+     * Title                                         ID
+     * Return Item                                   T_SCHOOL_MEMBERS.SCH_ME_MT_ID
+     * Display Width                                 0
+     ----------
+   - Filter Before Display                           No
+   - Automatic Display                               No
+   - Automatic Refresh                               Yes
+   - Automatic Select                                No
+   - Automatic Skip                                  No
+   * Automatic Position                              Yes
+   * Automatic Column Width                          Yes
+   - X Position                                      0
+   - Y Position                                      0
+   * Width                                           270
+   * Height                                          135
+   - Visual Attribute Group                          DEFAULT
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   - Foreground Color                                
+   - Background Color                                
+   - Fill Pattern                                    
+   - Font                                            
+   - Font Name                                       
+   - Font Size                                       0
+   - Font Weight                                     Medium
+   - Font Style                                      Plain
+   - Font Spacing                                    Normal
+   - Direction                                       Default
+   ----------
+   * Name                                            LV_SCHOOLS
+   - Subclass Information                            
+   - Comments                                        
+   * Title                                           Schools
+   - List Type                                       Record Group
+   * Record Group                                    RG_SCHOOLS
+   * Column Mapping Properties                       
+     ----------
+     * Name                                          SCH_NAME
+     * Title                                         Sch_Name
+     * Return Item                                   T_SCHOOL_MEMBERS.SCH_NAME
+     * Display Width                                 200
+     ----------
+     * Name                                          SCH_ID
+     * Title                                         Sch_Id
+     * Return Item                                   T_SCHOOL_MEMBERS.SCH_ME_SC_ID
+     * Display Width                                 0
+     ----------
+   - Filter Before Display                           No
+   - Automatic Display                               No
+   - Automatic Refresh                               Yes
+   - Automatic Select                                No
+   - Automatic Skip                                  No
+   * Automatic Position                              Yes
+   * Automatic Column Width                          Yes
+   - X Position                                      0
+   - Y Position                                      0
+   * Width                                           270
+   * Height                                          135
+   - Visual Attribute Group                          DEFAULT
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   - Foreground Color                                
+   - Background Color                                
+   - Fill Pattern                                    
+   - Font                                            
+   - Font Name                                       
+   - Font Size                                       0
+   - Font Weight                                     Medium
+   - Font Style                                      Plain
+   - Font Spacing                                    Normal
+   - Direction                                       Default
+   ----------
+ - Menus                                             
+ - Object Groups                                     
+ * Program Units                                     
+   ----------
+   * Name                                            MSG_ALERT
+   - Subclass Information                            
+   - Comments                                        
+   * Program Unit Text                               
+
+PROCEDURE msg_alert (p_txt_msg_alert  IN varchar2,
+                     p_txt_alert_type IN varchar2 default 'E') IS
+   p_alert_id alert;
+   p_alert_bt number;
+
+BEGIN
+   if ltrim (rtrim (p_txt_msg_alert)) is not NULL and ltrim (rtrim (p_txt_alert_type)) is not NULL then
+      if    ltrim (rtrim (upper (p_txt_alert_type))) = 'E' then -- Error
+         p_alert_id := find_alert ('MSG_ALERT');
+      elsif ltrim (rtrim (upper (p_txt_alert_type))) = 'W' then -- Warning
+         p_alert_id := find_alert ('MSG_WARNING');
+      else -- Note
+         p_alert_id := find_alert ('MSG_NOTE');
+      end if;
+
+      set_alert_property (p_alert_id, alert_message_text, p_txt_msg_alert);
+      p_alert_bt := show_alert (p_alert_id);
+
+      if ltrim (rtrim (upper (p_txt_alert_type))) = 'E' then
+         raise form_trigger_failure;
+      end if;
+   end if;
+END;
+
+   * Program Unit Type                               Procedure
+   ----------
+ - Property Classes                                  
+ * Record Groups                                     
+   ----------
+   * Name                                            RG_SCHOOL_MEMBER_TYPES
+   - Subclass Information                            
+   - Comments                                        
+   * Record Group Type                               Query
+   * Record Group Query                              select tsmt.sch_mt_name,
+       tsmt.sch_mt_id
+  from t_school_member_types tsmt
+ where ltrim (rtrim (upper (tsmt.sch_mt_id_active))) = 'Y'
+ order by tsmt.sch_mt_name
+
+   - Record Group Fetch Size                         20
+   * Column Specifications                           
+     ----------
+     * Name                                          SCH_MT_NAME
+     * Maximum Length                                100
+     * Column Data Type                              Character
+     - Column Value List                             
+     ----------
+     * Name                                          SCH_MT_ID
+     * Maximum Length                                23
+     * Column Data Type                              Number
+     - Column Value List                             
+     ----------
+   ----------
+   * Name                                            RG_SCHOOLS
+   - Subclass Information                            
+   - Comments                                        
+   * Record Group Type                               Query
+   * Record Group Query                              select ts.sch_name, ts.sch_id from t_school ts order by ts.sch_name
+   - Record Group Fetch Size                         20
+   * Column Specifications                           
+     ----------
+     * Name                                          SCH_NAME
+     * Maximum Length                                100
+     * Column Data Type                              Character
+     - Column Value List                             
+     ----------
+     * Name                                          SCH_ID
+     * Maximum Length                                23
+     * Column Data Type                              Number
+     - Column Value List                             
+     ----------
+   ----------
+ - Reports                                           
+ * Visual Attributes                                 
+   ----------
+   * Name                                            CURRENT_RECORD
+   - Visual Attribute Type                           Common
+   - Subclass Information                            
+   - Comments                                        
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   * Foreground Color                                white
+   * Background Color                                gray
+   - Fill Pattern                                    
+   - Font Name                                       
+   - Font Size                                       0
+   - Font Weight                                     Medium
+   - Font Style                                      Plain
+   - Font Spacing                                    Normal
+   ----------
+ * Windows                                           
+   ----------
+   * Name                                            W_SCHOOL_MEMBERS
+   - Subclass Information                            
+   - Comments                                        
+   - Help Book Topic                                 
+   * Title                                           School Members
+   * Primary Canvas                                  C_SCHOOL_MEMBERS
+   - Horizontal Toolbar Canvas                       
+   - Vertical Toolbar Canvas                         
+   - Window Style                                    Document
+   - Modal                                           No
+   - Hide on Exit                                    No
+   * Close Allowed                                   No
+   * Move Allowed                                    No
+   * Resize Allowed                                  No
+   * Maximize Allowed                                No
+   * Minimize Allowed                                No
+   * Minimized Title                                 School Members
+   - Icon Filename                                   
+   - Inherit Menu                                    Yes
+   - X Position                                      0
+   - Y Position                                      0
+   * Width                                           540
+   * Height                                          324
+   - Bevel                                           Lowered
+   - Show Horizontal Scroll Bar                      No
+   - Show Vertical Scroll Bar                        No
+   - Visual Attribute Group                          DEFAULT
+   - Character Mode Logical Attribute                
+   - White on Black                                  No
+   - Foreground Color                                
+   - Background Color                                
+   - Fill Pattern                                    
+   - Font                                            
+   - Font Name                                       
+   - Font Size                                       0
+   - Font Weight                                     Medium
+   - Font Style                                      Plain
+   - Font Spacing                                    Normal
+   - Direction                                       Default
+   ----------
