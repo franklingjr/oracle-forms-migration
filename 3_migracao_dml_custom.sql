@@ -28,7 +28,6 @@ DECLARE
 BEGIN
    DBMS_OUTPUT.put_line (p_prc_name);
 
--- NATCORP
    insert into m_disposable_form_trg_lvl (id_disposable_form_trg, txt_disposa_trg_on_form_level, txt_disposa_trg_on_block_level, txt_disposa_trg_on_item_level) values (PKG_M_DISPOSABLE_CONTENTS.fu_ret_id_txt_disposable_txt_i ('DELETE-PROCEDURE'),         'N', 'N', 'N');
    insert into m_disposable_form_trg_lvl (id_disposable_form_trg, txt_disposa_trg_on_form_level, txt_disposa_trg_on_block_level, txt_disposa_trg_on_item_level) values (PKG_M_DISPOSABLE_CONTENTS.fu_ret_id_txt_disposable_txt_i ('INSERT-PROCEDURE'),         'N', 'N', 'N');
    insert into m_disposable_form_trg_lvl (id_disposable_form_trg, txt_disposa_trg_on_form_level, txt_disposa_trg_on_block_level, txt_disposa_trg_on_item_level) values (PKG_M_DISPOSABLE_CONTENTS.fu_ret_id_txt_disposable_txt_i ('KEY-CLRBLK'),               'N', 'N', 'N');
