@@ -13,4 +13,6 @@ The line above contains the contents of batch file "object_list_reports.bat".
 
 - Latest file named "migracao_data_batch.sql" should read and process your text files
 
+This script covers Oracle Forms from any version that generates an Object List Report text file (menu: File -> Administration -> Object List Report) so there'll be no need to upgrade your old forms to newer Oracle Forms versions. Your Oracle Forms can be installed in american english, brazilian portuguese and latin american spanish, please contact me if your Oracle Forms is not installed in any of these languages. It also generates contents for Oracle APEX developers but you can request content creation for other languages.
+
 Questions: franklin.jr@bol.com.br
