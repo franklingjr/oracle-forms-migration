@@ -26,7 +26,7 @@ BEGIN
       delete m_load_form_plsql_params;
       delete m_load_form_record_groups;
       delete m_load_form_glob_syst_parm;
-      delete m_load_form_custom_disposa;
+--    delete m_load_form_custom_disposa;
       delete m_load_form_list_values;
 
       commit;

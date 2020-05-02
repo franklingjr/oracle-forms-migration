@@ -302,8 +302,8 @@ create table m_load_form_custom_disposa
 (id                             integer not NULL,
  txt_custom_disposable_text     varchar2(1000),
  id_disposable_text_type        integer,
- txt_disposable_text_has_params varchar2(1),
- txt_disposable_text_is_package varchar2(1),
+ txt_disposable_has_params      varchar2(1),
+ txt_disposable_is_package      varchar2(1),
  txt_disposable_text_detected   varchar2(1),
  txt_observacoes                varchar2(4000),
  user_create                    varchar2(50),
@@ -389,8 +389,8 @@ create table m_disposable_contents
 (id                             integer not NULL,
  txt_disposable_text            varchar2(1000),
  id_disposable_text_type        integer,
- txt_disposable_text_has_params varchar2(1),
- txt_disposable_text_is_package varchar2(1),
+ txt_disposable_has_params      varchar2(1),
+ txt_disposable_is_package      varchar2(1),
  id_form_trigger_type           integer,
  txt_observacoes                varchar2(4000),
  user_create                    varchar2(50),
@@ -406,9 +406,9 @@ create table m_disposable_contents
 create table m_disposable_form_trg_lvl
 (id                             integer not NULL,
  id_disposable_form_trg         integer,
- txt_disposa_trg_on_form_level  varchar2(1),
- txt_disposa_trg_on_block_level varchar2(1),
- txt_disposa_trg_on_item_level  varchar2(1),
+ txt_dispos_trg_form_level      varchar2(1),
+ txt_dispos_trg_block_level     varchar2(1),
+ txt_dispos_trg_item_level      varchar2(1),
  txt_observacoes                varchar2(4000),
  user_create                    varchar2(50),
  date_create                    date,
@@ -870,18 +870,18 @@ CREATE OR REPLACE PACKAGE BODY pkg_m_disposable_contents IS
       pragma autonomous_transaction;
 
    BEGIN
-      p_m_disposable_contents.txt_disposable_text            := trim (upper (p_m_disposable_contents.txt_disposable_text));
-      p_m_disposable_contents.txt_observacoes                := trim (upper (p_m_disposable_contents.txt_observacoes));
+      p_m_disposable_contents.txt_disposable_text       := trim (upper (p_m_disposable_contents.txt_disposable_text));
+      p_m_disposable_contents.txt_observacoes           := trim (upper (p_m_disposable_contents.txt_observacoes));
 
-      p_m_disposable_contents.txt_disposable_text_has_params := nvl (trim (upper (p_m_disposable_contents.txt_disposable_text_has_params)), 'N');
-      p_m_disposable_contents.txt_disposable_text_is_package := nvl (trim (upper (p_m_disposable_contents.txt_disposable_text_is_package)), 'N');
+      p_m_disposable_contents.txt_disposable_has_params := nvl (trim (upper (p_m_disposable_contents.txt_disposable_has_params)), 'N');
+      p_m_disposable_contents.txt_disposable_is_package := nvl (trim (upper (p_m_disposable_contents.txt_disposable_is_package)), 'N');
 
-      if p_m_disposable_contents.txt_disposable_text_has_params not in ('Y', 'N', 'B') then -- YES/NO/BOTH (EXAMPLE: CLEAR_FORM BUILT-IN)
-         p_m_disposable_contents.txt_disposable_text_has_params := 'N';
+      if p_m_disposable_contents.txt_disposable_has_params not in ('Y', 'N', 'B') then -- YES/NO/BOTH (EXAMPLE: CLEAR_FORM BUILT-IN)
+         p_m_disposable_contents.txt_disposable_has_params := 'N';
       end if;
 
-      if p_m_disposable_contents.txt_disposable_text_is_package not in ('Y', 'N') then
-         p_m_disposable_contents.txt_disposable_text_is_package := 'N';
+      if p_m_disposable_contents.txt_disposable_is_package not in ('Y', 'N') then
+         p_m_disposable_contents.txt_disposable_is_package := 'N';
       end if;
 
       if p_m_disposable_contents.txt_disposable_text is NULL then
@@ -8636,8 +8636,8 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
 
    BEGIN
       for r_m_disposable_contents in c_m_disposable_contents loop
-         if r_m_disposable_contents.txt_disposable_text_is_package = 'N' then
-            if r_m_disposable_contents.txt_disposable_text_has_params in ('B', 'N') then
+         if r_m_disposable_contents.txt_disposable_is_package = 'N' then
+            if r_m_disposable_contents.txt_disposable_has_params in ('B', 'N') then
                if p_line_analysis = r_m_disposable_contents.txt_disposable_text then
                   return TRUE; -- LINE HAS ONLY DISPOSABLE ORACLE FORMS PL/SQL ROUTINES
                elsif trim (substr (p_line_analysis, 1, instr (p_line_analysis, ' '))) = 'END'
@@ -8646,14 +8646,14 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
                end if;
             end if;
 
-            if r_m_disposable_contents.txt_disposable_text_has_params in ('B', 'Y') then
+            if r_m_disposable_contents.txt_disposable_has_params in ('B', 'Y') then
                if trim (substr (p_line_analysis, 1, instr (p_line_analysis, '(') - 1)) = r_m_disposable_contents.txt_disposable_text then
                   return TRUE; -- LINE HAS ONLY DISPOSABLE ORACLE FORMS PL/SQL ROUTINES
                end if;
             end if;
          end if;
 
-         if r_m_disposable_contents.txt_disposable_text_is_package = 'Y' then
+         if r_m_disposable_contents.txt_disposable_is_package = 'Y' then
             if trim (substr (p_line_analysis, 1, instr (p_line_analysis, '.') - 1)) = r_m_disposable_contents.txt_disposable_text then
                return TRUE; -- LINE HAS ONLY DISPOSABLE ORACLE FORMS PL/SQL ROUTINES
             end if;
@@ -8686,19 +8686,19 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
 
    BEGIN
       for r_m_load_form_custom_disposa in c_m_load_form_custom_disposa loop
-         if    r_m_load_form_custom_disposa.txt_disposable_text_has_params = 'N' and r_m_load_form_custom_disposa.txt_disposable_text_is_package = 'N' then
+         if    r_m_load_form_custom_disposa.txt_disposable_has_params = 'N' and r_m_load_form_custom_disposa.txt_disposable_is_package = 'N' then
             if p_line_analysis = r_m_load_form_custom_disposa.txt_custom_disposable_text then
                return TRUE; -- LINE IS DISPOSABLE UNDER CUSTOM SETTINGS
             end if;
-         elsif r_m_load_form_custom_disposa.txt_disposable_text_has_params = 'Y' and r_m_load_form_custom_disposa.txt_disposable_text_is_package = 'N' then
+         elsif r_m_load_form_custom_disposa.txt_disposable_has_params = 'Y' and r_m_load_form_custom_disposa.txt_disposable_is_package = 'N' then
             if trim (substr (p_line_analysis, 1, instr (p_line_analysis, '(') - 1)) = r_m_load_form_custom_disposa.txt_custom_disposable_text then
                return TRUE; -- LINE IS DISPOSABLE UNDER CUSTOM SETTINGS
             end if;
-         elsif r_m_load_form_custom_disposa.txt_disposable_text_has_params = 'N' and r_m_load_form_custom_disposa.txt_disposable_text_is_package = 'Y' then
+         elsif r_m_load_form_custom_disposa.txt_disposable_has_params = 'N' and r_m_load_form_custom_disposa.txt_disposable_is_package = 'Y' then
             if trim (substr (p_line_analysis, 1, instr (p_line_analysis, '.') - 1)) = r_m_load_form_custom_disposa.txt_custom_disposable_text then
                return TRUE; -- LINE IS DISPOSABLE UNDER CUSTOM SETTINGS
             end if;
-         elsif r_m_load_form_custom_disposa.txt_disposable_text_has_params = 'Y' and r_m_load_form_custom_disposa.txt_disposable_text_is_package = 'Y' then
+         elsif r_m_load_form_custom_disposa.txt_disposable_has_params = 'Y' and r_m_load_form_custom_disposa.txt_disposable_is_package = 'Y' then
             if trim (substr (p_line_analysis, 1, instr (p_line_analysis, '.') - 1)) = r_m_load_form_custom_disposa.txt_custom_disposable_text then
                return TRUE; -- LINE IS DISPOSABLE UNDER CUSTOM SETTINGS
             end if;
@@ -9085,8 +9085,8 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
           order by mlfpc.id;
 
       r_m_load_form_plsql_contents_p c_m_load_form_plsql_contents_p%ROWTYPE := NULL;
-      p_txt_disposable_text_has_para M_LOAD_FORM_CUSTOM_DISPOSA.txt_disposable_text_has_params%TYPE := NULL;
-      p_txt_disposable_text_is_packa M_LOAD_FORM_CUSTOM_DISPOSA.txt_disposable_text_is_package%TYPE := NULL;
+      p_txt_disposable_text_has_para M_LOAD_FORM_CUSTOM_DISPOSA.txt_disposable_has_params%TYPE := NULL;
+      p_txt_disposable_text_is_packa M_LOAD_FORM_CUSTOM_DISPOSA.txt_disposable_is_package%TYPE := NULL;
       p_retorno      boolean        := NULL;
       p_prg_unit_hdr clob           := empty_clob();
       p_prc_name     varchar2(1000) := p_pck_name || 'fu_discard_prg_identify_line_b (' || p_id_form || '): ';
@@ -9135,8 +9135,8 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
                BEGIN
                   insert into m_load_form_custom_disposa (txt_custom_disposable_text,
                                                           id_disposable_text_type,
-                                                          txt_disposable_text_has_params,
-                                                          txt_disposable_text_is_package,
+                                                          txt_disposable_has_params,
+                                                          txt_disposable_is_package,
                                                           txt_disposable_text_detected)
                                                   values (nvl (r_m_load_form_plsql_contents_p.txt_generated_function_name,
                                                                r_m_load_form_plsql_contents_p.txt_plsql_object_name),
@@ -9177,11 +9177,11 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
                                             RETURN boolean IS
       cursor c_m_disposable_contents (p_id_disposable_text_type M_DISPOSABLE_CONTENTS.id_disposable_text_type%TYPE) is
          select mdc.txt_disposable_text,
-                mdc.txt_disposable_text_has_params,
-                mdc.txt_disposable_text_is_package,
-                mdftl.txt_disposa_trg_on_form_level,
-                mdftl.txt_disposa_trg_on_block_level,
-                mdftl.txt_disposa_trg_on_item_level
+                mdc.txt_disposable_has_params,
+                mdc.txt_disposable_is_package,
+                mdftl.txt_dispos_trg_form_level,
+                mdftl.txt_dispos_trg_block_level,
+                mdftl.txt_dispos_trg_item_level
            from m_disposable_contents     mdc,
                 m_disposable_form_trg_lvl mdftl
           where mdftl.id_disposable_form_trg (+) = mdc.id
@@ -9266,7 +9266,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
 
                            commit;
                         elsif r_m_load_form_dispos_txt_typ.txt_disposable_text_type = 'ORACLE FORMS TRIGGER' then
-                           if  r_m_disposable_contents.txt_disposa_trg_on_form_level = 'Y' then
+                           if  r_m_disposable_contents.txt_dispos_trg_form_level = 'Y' then
                               BEGIN -- DISCARD ALL FORM TRIGGERS THAT WERE MARKED AS DISPOSABLE IN CUSTOM CONFIGURATIONS
                                  update m_load_form_plsql_contents mlfpc
                                     set mlfpc.txt_disposable_routine       = 'Y',
@@ -9286,7 +9286,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
                               commit;
                            end if;
 
-                           if r_m_disposable_contents.txt_disposa_trg_on_block_level = 'Y' then
+                           if r_m_disposable_contents.txt_dispos_trg_block_level = 'Y' then
                               BEGIN -- DISCARD ALL BLOCK TRIGGERS THAT WERE MARKED AS DISPOSABLE IN CUSTOM CONFIGURATIONS
                                  update m_load_form_plsql_contents mlfpc
                                     set mlfpc.txt_disposable_routine       = 'Y',
@@ -9306,7 +9306,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
                               commit;
                            end if;
 
-                           if r_m_disposable_contents.txt_disposa_trg_on_item_level = 'Y' then
+                           if r_m_disposable_contents.txt_dispos_trg_item_level = 'Y' then
                               BEGIN -- DISCARD ALL BLOCK.ITEM TRIGGERS THAT WERE MARKED AS DISPOSABLE IN CUSTOM CONFIGURATIONS
                                  update m_load_form_plsql_contents mlfpc
                                     set mlfpc.txt_disposable_routine       = 'Y',
@@ -11621,7 +11621,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
       delete m_load_form_glob_syst_parm mlfgsp where mlfgsp.id_form = nvl (p_id, mlfgsp.id_form);
       delete m_load_form_list_values    mlflv  where mlflv.id_form  = nvl (p_id, mlflv.id_form);
 
-      delete m_load_form_custom_disposa mlfcd;
+--    delete m_load_form_custom_disposa mlfcd;
 
       commit;
 
@@ -11700,7 +11700,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_import_form is
             select distinct 1
               into p_existe
               from m_load_form_lines mlfl
-             where mlfl.id = p_id;
+             where mlfl.id_form = p_id;
 
          EXCEPTION
             when no_data_found then
@@ -12813,18 +12813,18 @@ CREATE OR REPLACE PACKAGE BODY pkg_m_load_form_custom_disposa IS
       pragma autonomous_transaction;
 
    BEGIN
-      p_m_load_form_custom_disposa.txt_custom_disposable_text     := trim (upper (p_m_load_form_custom_disposa.txt_custom_disposable_text));
-      p_m_load_form_custom_disposa.txt_observacoes                := trim (upper (p_m_load_form_custom_disposa.txt_observacoes));
-      p_m_load_form_custom_disposa.txt_disposable_text_has_params := nvl (trim (upper (p_m_load_form_custom_disposa.txt_disposable_text_has_params)), 'N');
-      p_m_load_form_custom_disposa.txt_disposable_text_is_package := nvl (trim (upper (p_m_load_form_custom_disposa.txt_disposable_text_is_package)), 'N');
-      p_m_load_form_custom_disposa.txt_disposable_text_detected   := nvl (trim (upper (p_m_load_form_custom_disposa.txt_disposable_text_detected)),   'N');
+      p_m_load_form_custom_disposa.txt_custom_disposable_text   := trim (upper (p_m_load_form_custom_disposa.txt_custom_disposable_text));
+      p_m_load_form_custom_disposa.txt_observacoes              := trim (upper (p_m_load_form_custom_disposa.txt_observacoes));
+      p_m_load_form_custom_disposa.txt_disposable_has_params    := nvl (trim (upper (p_m_load_form_custom_disposa.txt_disposable_has_params)),    'N');
+      p_m_load_form_custom_disposa.txt_disposable_is_package    := nvl (trim (upper (p_m_load_form_custom_disposa.txt_disposable_is_package)),    'N');
+      p_m_load_form_custom_disposa.txt_disposable_text_detected := nvl (trim (upper (p_m_load_form_custom_disposa.txt_disposable_text_detected)), 'N');
 
-      if p_m_load_form_custom_disposa.txt_disposable_text_has_params not in ('Y', 'N') then
-         p_m_load_form_custom_disposa.txt_disposable_text_has_params := 'N';
+      if p_m_load_form_custom_disposa.txt_disposable_has_params not in ('Y', 'N') then
+         p_m_load_form_custom_disposa.txt_disposable_has_params := 'N';
       end if;
 
-      if p_m_load_form_custom_disposa.txt_disposable_text_is_package not in ('Y', 'N') then
-         p_m_load_form_custom_disposa.txt_disposable_text_is_package := 'N';
+      if p_m_load_form_custom_disposa.txt_disposable_is_package not in ('Y', 'N') then
+         p_m_load_form_custom_disposa.txt_disposable_is_package := 'N';
       end if;
 
       if p_m_load_form_custom_disposa.txt_disposable_text_detected   not in ('Y', 'N') then
@@ -12890,22 +12890,22 @@ CREATE OR REPLACE PACKAGE BODY pkg_m_disposable_form_trg_lvl IS
       pragma autonomous_transaction;
 
    BEGIN
-      p_m_disposable_form_trg_lvl.txt_disposa_trg_on_form_level  := nvl (trim (upper (p_m_disposable_form_trg_lvl.txt_disposa_trg_on_form_level)),  'N');
-      p_m_disposable_form_trg_lvl.txt_disposa_trg_on_block_level := nvl (trim (upper (p_m_disposable_form_trg_lvl.txt_disposa_trg_on_block_level)), 'N');
-      p_m_disposable_form_trg_lvl.txt_disposa_trg_on_item_level  := nvl (trim (upper (p_m_disposable_form_trg_lvl.txt_disposa_trg_on_item_level)),  'N');
+      p_m_disposable_form_trg_lvl.txt_dispos_trg_form_level  := nvl (trim (upper (p_m_disposable_form_trg_lvl.txt_dispos_trg_form_level)),  'N');
+      p_m_disposable_form_trg_lvl.txt_dispos_trg_block_level := nvl (trim (upper (p_m_disposable_form_trg_lvl.txt_dispos_trg_block_level)), 'N');
+      p_m_disposable_form_trg_lvl.txt_dispos_trg_item_level  := nvl (trim (upper (p_m_disposable_form_trg_lvl.txt_dispos_trg_item_level)),  'N');
 
       p_m_disposable_form_trg_lvl.txt_observacoes                := trim (upper (p_m_disposable_form_trg_lvl.txt_observacoes));
 
-      if p_m_disposable_form_trg_lvl.txt_disposa_trg_on_form_level  not in ('Y', 'N') then
-         p_m_disposable_form_trg_lvl.txt_disposa_trg_on_form_level  := 'N';
+      if p_m_disposable_form_trg_lvl.txt_dispos_trg_form_level  not in ('Y', 'N') then
+         p_m_disposable_form_trg_lvl.txt_dispos_trg_form_level  := 'N';
       end if;
 
-      if p_m_disposable_form_trg_lvl.txt_disposa_trg_on_block_level not in ('Y', 'N') then
-         p_m_disposable_form_trg_lvl.txt_disposa_trg_on_block_level := 'N';
+      if p_m_disposable_form_trg_lvl.txt_dispos_trg_block_level not in ('Y', 'N') then
+         p_m_disposable_form_trg_lvl.txt_dispos_trg_block_level := 'N';
       end if;
 
-      if p_m_disposable_form_trg_lvl.txt_disposa_trg_on_item_level  not in ('Y', 'N') then
-         p_m_disposable_form_trg_lvl.txt_disposa_trg_on_item_level  := 'N';
+      if p_m_disposable_form_trg_lvl.txt_dispos_trg_item_level  not in ('Y', 'N') then
+         p_m_disposable_form_trg_lvl.txt_dispos_trg_item_level  := 'N';
       end if;
 
       if p_m_disposable_form_trg_lvl.id_disposable_form_trg is NULL then
@@ -13828,22 +13828,22 @@ DECLARE
 
 BEGIN
    if inserting or updating then
-      p_m_disposable_contents.id                             := :NEW.id;
-      p_m_disposable_contents.txt_disposable_text            := :NEW.txt_disposable_text;
-      p_m_disposable_contents.id_disposable_text_type        := :NEW.id_disposable_text_type;
-      p_m_disposable_contents.txt_disposable_text_has_params := :NEW.txt_disposable_text_has_params;
-      p_m_disposable_contents.txt_disposable_text_is_package := :NEW.txt_disposable_text_is_package;
-      p_m_disposable_contents.txt_observacoes                := :NEW.txt_observacoes;
+      p_m_disposable_contents.id                        := :NEW.id;
+      p_m_disposable_contents.txt_disposable_text       := :NEW.txt_disposable_text;
+      p_m_disposable_contents.id_disposable_text_type   := :NEW.id_disposable_text_type;
+      p_m_disposable_contents.txt_disposable_has_params := :NEW.txt_disposable_has_params;
+      p_m_disposable_contents.txt_disposable_is_package := :NEW.txt_disposable_is_package;
+      p_m_disposable_contents.txt_observacoes           := :NEW.txt_observacoes;
 
       p_retorno := PKG_M_DISPOSABLE_CONTENTS.fu_val_m_disposable_contents_b (p_m_disposable_contents, p_msg_retorno);
 
       if p_retorno = TRUE then
-         :NEW.id                             := p_m_disposable_contents.id;
-         :NEW.txt_disposable_text            := p_m_disposable_contents.txt_disposable_text;
-         :NEW.id_disposable_text_type        := p_m_disposable_contents.id_disposable_text_type;
-         :NEW.txt_disposable_text_has_params := p_m_disposable_contents.txt_disposable_text_has_params;
-         :NEW.txt_disposable_text_is_package := p_m_disposable_contents.txt_disposable_text_is_package;
-         :NEW.txt_observacoes                := p_m_disposable_contents.txt_observacoes;
+         :NEW.id                        := p_m_disposable_contents.id;
+         :NEW.txt_disposable_text       := p_m_disposable_contents.txt_disposable_text;
+         :NEW.id_disposable_text_type   := p_m_disposable_contents.id_disposable_text_type;
+         :NEW.txt_disposable_has_params := p_m_disposable_contents.txt_disposable_has_params;
+         :NEW.txt_disposable_is_package := p_m_disposable_contents.txt_disposable_is_package;
+         :NEW.txt_observacoes           := p_m_disposable_contents.txt_observacoes;
       else
          raise_application_error (-20001, p_msg_retorno);
       end if;
@@ -13969,24 +13969,24 @@ DECLARE
 
 BEGIN
    if inserting or updating then
-      p_m_load_form_custom_disposa.id                             := :NEW.id;
-      p_m_load_form_custom_disposa.txt_custom_disposable_text     := :NEW.txt_custom_disposable_text;
-      p_m_load_form_custom_disposa.id_disposable_text_type        := :NEW.id_disposable_text_type;
-      p_m_load_form_custom_disposa.txt_disposable_text_has_params := :NEW.txt_disposable_text_has_params;
-      p_m_load_form_custom_disposa.txt_disposable_text_is_package := :NEW.txt_disposable_text_is_package;
-      p_m_load_form_custom_disposa.txt_disposable_text_detected   := :NEW.txt_disposable_text_detected;
-      p_m_load_form_custom_disposa.txt_observacoes                := :NEW.txt_observacoes;
+      p_m_load_form_custom_disposa.id                           := :NEW.id;
+      p_m_load_form_custom_disposa.txt_custom_disposable_text   := :NEW.txt_custom_disposable_text;
+      p_m_load_form_custom_disposa.id_disposable_text_type      := :NEW.id_disposable_text_type;
+      p_m_load_form_custom_disposa.txt_disposable_has_params    := :NEW.txt_disposable_has_params;
+      p_m_load_form_custom_disposa.txt_disposable_is_package    := :NEW.txt_disposable_is_package;
+      p_m_load_form_custom_disposa.txt_disposable_text_detected := :NEW.txt_disposable_text_detected;
+      p_m_load_form_custom_disposa.txt_observacoes              := :NEW.txt_observacoes;
 
       p_retorno := PKG_M_LOAD_FORM_CUSTOM_DISPOSA.fu_val_m_load_form_custom_di_b (p_m_load_form_custom_disposa, p_msg_retorno);
 
       if p_retorno = TRUE then
-         :NEW.id                             := p_m_load_form_custom_disposa.id;
-         :NEW.txt_custom_disposable_text     := p_m_load_form_custom_disposa.txt_custom_disposable_text;
-         :NEW.id_disposable_text_type        := p_m_load_form_custom_disposa.id_disposable_text_type;
-         :NEW.txt_disposable_text_has_params := p_m_load_form_custom_disposa.txt_disposable_text_has_params;
-         :NEW.txt_disposable_text_is_package := p_m_load_form_custom_disposa.txt_disposable_text_is_package;
-         :NEW.txt_disposable_text_detected   := p_m_load_form_custom_disposa.txt_disposable_text_detected;
-         :NEW.txt_observacoes                := p_m_load_form_custom_disposa.txt_observacoes;
+         :NEW.id                           := p_m_load_form_custom_disposa.id;
+         :NEW.txt_custom_disposable_text   := p_m_load_form_custom_disposa.txt_custom_disposable_text;
+         :NEW.id_disposable_text_type      := p_m_load_form_custom_disposa.id_disposable_text_type;
+         :NEW.txt_disposable_has_params    := p_m_load_form_custom_disposa.txt_disposable_has_params;
+         :NEW.txt_disposable_is_package    := p_m_load_form_custom_disposa.txt_disposable_is_package;
+         :NEW.txt_disposable_text_detected := p_m_load_form_custom_disposa.txt_disposable_text_detected;
+         :NEW.txt_observacoes              := p_m_load_form_custom_disposa.txt_observacoes;
       else
          raise_application_error (-20001, p_msg_retorno);
       end if;
@@ -14024,18 +14024,18 @@ BEGIN
    if inserting or updating then
       p_m_disposable_form_trg_lvl.id                             := :NEW.id;
       p_m_disposable_form_trg_lvl.id_disposable_form_trg         := :NEW.id_disposable_form_trg;
-      p_m_disposable_form_trg_lvl.txt_disposa_trg_on_form_level  := :NEW.txt_disposa_trg_on_form_level;
-      p_m_disposable_form_trg_lvl.txt_disposa_trg_on_block_level := :NEW.txt_disposa_trg_on_block_level;
-      p_m_disposable_form_trg_lvl.txt_disposa_trg_on_item_level  := :NEW.txt_disposa_trg_on_item_level;
+      p_m_disposable_form_trg_lvl.txt_dispos_trg_form_level  := :NEW.txt_dispos_trg_form_level;
+      p_m_disposable_form_trg_lvl.txt_dispos_trg_block_level := :NEW.txt_dispos_trg_block_level;
+      p_m_disposable_form_trg_lvl.txt_dispos_trg_item_level  := :NEW.txt_dispos_trg_item_level;
 
       p_retorno := PKG_M_DISPOSABLE_FORM_TRG_LVL.fu_val_m_disposable_form_trg_b (p_m_disposable_form_trg_lvl, p_msg_retorno);
 
       if p_retorno = TRUE then
          :NEW.id                             := p_m_disposable_form_trg_lvl.id;
          :NEW.id_disposable_form_trg         := p_m_disposable_form_trg_lvl.id_disposable_form_trg;
-         :NEW.txt_disposa_trg_on_form_level  := p_m_disposable_form_trg_lvl.txt_disposa_trg_on_form_level;
-         :NEW.txt_disposa_trg_on_block_level := p_m_disposable_form_trg_lvl.txt_disposa_trg_on_block_level;
-         :NEW.txt_disposa_trg_on_item_level  := p_m_disposable_form_trg_lvl.txt_disposa_trg_on_item_level;
+         :NEW.txt_dispos_trg_form_level  := p_m_disposable_form_trg_lvl.txt_dispos_trg_form_level;
+         :NEW.txt_dispos_trg_block_level := p_m_disposable_form_trg_lvl.txt_dispos_trg_block_level;
+         :NEW.txt_dispos_trg_item_level  := p_m_disposable_form_trg_lvl.txt_dispos_trg_item_level;
       else
          raise_application_error (-20001, p_msg_retorno);
       end if;
