@@ -1,6 +1,8 @@
 # oracle-forms-migration
 Oracle PL/SQL scripts and Oracle APEX application, both aimed at migrating from Oracle Forms to other interfaces - only migrations to Oracle APEX are available at this moment; other languages can be covered later.
 
+Oracle APEX application f102.sql is available for those who prefer processing one file after another - there's a page where you can upload and follow a 5-step process. However, for those who prefer batch processing lots of files, here comes the steps.
+
 - Create a separated database user with privilege to create directory
 - Upload your Oracle Forms object list report text file to the directory
 - Your text file must be UTF-8 format
