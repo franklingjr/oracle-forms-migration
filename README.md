@@ -2,7 +2,9 @@
 
 Questions: franklin.jr@bol.com.br
 
-Oracle PL/SQL scripts and Oracle APEX application, both aimed at migrating from Oracle Forms to other interfaces - only migrations to Oracle APEX are available at this moment but the script is flexible enough to incorporate other languages upon request.
+Oracle PL/SQL scripts and Oracle APEX application developed to transform Oracle Forms business logic into an Oracle PL/SQL database package. For this script there is no mandatory language for your Oracle Forms editor (no need for your Oracle Forms to be installed in english), no minimum Oracle Forms version (no need to upgrade your Oracle Forms to 9i/10g): this script reads Object List Report text files.
+
+Only migrations to Oracle APEX are available at this moment but the script is flexible enough to incorporate other languages upon request.
 
 First, create a separated database user (with privilege to create directory if you wish to batch process your files), and run these scripts in the correct order to create database objects.
 
