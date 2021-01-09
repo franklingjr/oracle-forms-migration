@@ -2,7 +2,7 @@
 
 Questions: franklin.jr@bol.com.br
 <a href="https://www.buymeacoffee.com/franklinjr" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
-<a href="https://ko-fi.com/franklinjr" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+<a href='https://ko-fi.com/franklinjr' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 Oracle PL/SQL scripts and Oracle APEX application developed to transform Oracle Forms business logic into an Oracle PL/SQL database package. For this script there is no mandatory language for your Oracle Forms editor (no need for your Oracle Forms to be installed in english), no minimum Oracle Forms version (no need to upgrade your Oracle Forms to 9i/10g): this script reads Object List Report text files.
 
